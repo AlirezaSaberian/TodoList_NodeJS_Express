@@ -1,0 +1,46 @@
+<% if (todos.length > 0) { %>
+<ul class="list-unstyled" id="todo">
+  <% for (let todo of todos) { %>
+  <li>
+    <div
+      class="alert <%= todo.completed ? 'alert-success' : 'alert-secondary' %>"
+    >
+      <% if (todo.completed) { %>
+      <del><%= todo.text %></del>
+      <a
+        href="/admin/delete-todo/<%= todo.id %>"
+        class="close fa fa-trash"
+        style="color: red"
+      ></a>
+      <a
+        href="/admin/completed-todo/<%= todo.id %>"
+        class="close fa fa-times-circle mr-2"
+        style="color: red"
+      ></a>
+      <% } else { %> <%= todo.text %>
+      <a
+        href="/admin/delete-todo/<%= todo.id %>"
+        class="close fa fa-trash"
+        style="color: red"
+      ></a>
+      <a
+        href="/admin/completed-todo/<%= todo.id %>"
+        class="close fa fa-check-square mr-2"
+        style="color: green"
+      ></a>
+      <% } %>
+    </div>
+  </li>
+  <% } %>
+</ul>
+<% } else { %>
+<div class="alert alert-warning w-50 mx-auto" role="alert">
+  <h4 class="alert-heading">No tasks for today.</h4>
+  <p>You can write your tasks above so I can save them for you.</p>
+  <hr />
+  <p class="mb-0">
+    Don’t worry if something is missing
+    <span class="fa fa-heart" style="color: red" />
+  </p>
+</div>
+<% } %>
